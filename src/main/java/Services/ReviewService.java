@@ -5,6 +5,7 @@ import Repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -29,6 +30,14 @@ public class ReviewService {
 
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
+    }
+
+    public Optional<Review> getReviewById(Long reviewId) {
+        return reviewRepository.findById(reviewId);
+    }
+
+    public List<Review> getReviewsByUserId(Long revieweeId) {
+        return reviewRepository.findByRevieweeId(revieweeId);
     }
 }
 

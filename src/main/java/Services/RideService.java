@@ -2,6 +2,7 @@ package Services;
 
 import Entity.Ride;
 import Repository.RideRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,6 +45,10 @@ public class RideService {
 
     public List<Ride> findAvailableRides(String departure, String destination) {
         return rideRepository.findByDepartureAndDestination(departure, destination);
+    }
+
+    public Ride saveRide(Ride ride) {
+        return rideRepository.save(ride);
     }
 }
 
