@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails du Trajet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Détails du Trajet</h2>
+    <p><strong>Départ :</strong> <span th:text="${ride.departure}"></span></p>
+    <p><strong>Destination :</strong> <span th:text="${ride.destination}"></span></p>
+    <p><strong>Date de départ :</strong> <span th:text="${ride.departureDate}"></span></p>
+    <p><strong>Prix par place :</strong> <span th:text="${ride.price}"></span></p>
+    <p><strong>Nombre de places disponibles :</strong> <span th:text="${ride.seats}"></span></p>
+
+    <a class="btn btn-secondary" th:href="@{/rides}" role="button">Retour à la liste des trajets</a>
+    <a class="btn btn-warning" th:href="@{/rides/{id}/update(id=${ride.id})}" role="button">Modifier le Trajet</a>
+    <a class="btn btn-danger" th:href="@{/rides/{id}/delete(id=${ride.id})}" role="button">Supprimer le Trajet</a>
+</div>
+</body>
+</html>

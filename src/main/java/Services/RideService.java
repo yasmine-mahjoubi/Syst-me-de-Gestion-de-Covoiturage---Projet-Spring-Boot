@@ -5,6 +5,9 @@ import Repository.RideRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 @Service
@@ -43,11 +46,19 @@ public class RideService {
         rideRepository.deleteById(id);
     }
 
-    public List<Ride> findAvailableRides(String departure, String destination) {
-        return rideRepository.findByDepartureAndDestination(departure, destination);
+    //méthode de recherche de trajet
+    public List<Ride> searchRides(String departure, String destination, LocalDate date, Double maxPrice) {
+        return rideRepository.findRides(departure, destination, date, maxPrice);
     }
 
     public Ride saveRide(Ride ride) {
+        // Validation des données
+        if (ride.getNb_place() <= 0) {
+            throw new IllegalArgumentException("Le nombre de places disponibles doit être supérieur à 0.");
+        }
+        if (ride.getDate().isBefore(ChronoLocalDate.from(LocalDateTime.now()))) {
+            throw new IllegalArgumentException("La date de départ ne peut pas être dans le passé.");
+        }
         return rideRepository.save(ride);
     }
 }

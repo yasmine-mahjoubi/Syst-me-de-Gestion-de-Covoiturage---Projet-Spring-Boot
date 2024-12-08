@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Trajets</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Tous les Trajets</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Départ</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Date de départ</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Places disponibles</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ride : ${rides}">
+            <td th:text="${ride.departure}"></td>
+            <td th:text="${ride.destination}"></td>
+            <td th:text="${ride.departureDate}"></td>
+            <td th:text="${ride.price}"></td>
+            <td th:text="${ride.seats}"></td>
+            <td>
+                <a class="btn btn-info" th:href="@{/rides/{id}(id=${ride.id})}" role="button">Détails</a>
+                <a class="btn btn-warning" th:href="@{/rides/{id}/update(id=${ride.id})}" role="button">Modifier</a>
+                <a class="btn btn-danger" th:href="@{/rides/{id}/delete(id=${ride.id})}" role="button">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Créer un Trajet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Créer un Trajet</h2>
+    <form th:action="@{/rides/create}" th:object="${ride}" method="post">
+        <div class="form-group">
+            <label for="departure">Départ</label>
+            <input type="text" class="form-control" id="departure" th:field="*{departure}" placeholder="Ville de départ" required>
+        </div>
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" class="form-control" id="destination" th:field="*{destination}" placeholder="Ville de destination" required>
+        </div>
+        <div class="form-group">
+            <label for="departureDate">Date et Heure de départ</label>
+            <input type="datetime-local" class="form-control" id="departureDate" th:field="*{date}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Prix par place</label>
+            <input type="number" class="form-control" id="price" th:field="*{price}" placeholder="Prix" required>
+        </div>
+        <div class="form-group">
+            <label for="seats">Nombre de places disponibles</label>
+            <input type="number" class="form-control" id="seats" th:field="*{nb_place}" placeholder="Nombre de places" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Créer le Trajet</button>
+    </form>
+</div>
+</body>
+</html>
